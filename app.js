@@ -37,11 +37,31 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         document.getElementById('current-' + currentPlayer).textContent = roundScore;
     } else {
       // scores[currentPlayer] = 0;
+      nextPlayer();
+
+  }
+
+});
+
+document.querySelector('.btn-hold').addEventListener('click', function() {
+      scores[currentPlayer] += roundScore;
+      roundScore = 0;
+
+      //update UI
+      document.querySelector('#score-' + currentPlayer).textContent = scores[currentPlayer];
+      //check winner
+
+
+      //no winner then next player
+      nextPlayer();
+})
+
+function nextPlayer() {
       roundScore = 0;
 
       //reset scores
-      document.getElementById('score-' + currentPlayer).textContent = '0';
-      document.getElementById('current-' + currentPlayer).textContent = '0';
+      document.getElementById('current-0').textContent = '0';
+      document.getElementById('current-1').textContent = '0';
 
       //update currentPlayer
       currentPlayer = (currentPlayer + 1) % 2;
@@ -52,8 +72,5 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
       //hide dice again
       document.querySelector('.dice').style.display = 'none';
-  }
-
-});
-
+}
 // alert();
