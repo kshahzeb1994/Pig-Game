@@ -50,10 +50,19 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
       //update UI
       document.querySelector('#score-' + currentPlayer).textContent = scores[currentPlayer];
       //check winner
+      if(scores[currentPlayer] >= 20) {
+          document.querySelector('#name-' + currentPlayer).textContent = "Winner";
+          document.querySelector('.dice').style.display = 'none';
+          document.querySelector('.player-' + currentPlayer + '-panel').classList.add('winner');
+          document.querySelector('.player-' + currentPlayer + '-panel').classList.remove('active');
+      }
+      else {
+        //no winner then next player
+        nextPlayer();
+      }
 
 
-      //no winner then next player
-      nextPlayer();
+
 })
 
 function nextPlayer() {
